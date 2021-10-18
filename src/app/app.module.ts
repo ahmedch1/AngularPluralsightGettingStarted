@@ -14,7 +14,7 @@ import {RouterModule} from "@angular/router";
   declarations: [AppComponent, WelcomeComponent, ProductListComponent, ConvertToSpacesPipe, StarComponent, ProductDetailComponent],
   imports: [RouterModule.forRoot([
     {path: 'products', component: ProductListComponent},
-    {path: 'product/:id', component: ProductDetailComponent},
+    {path: 'products/:id', component: ProductDetailComponent},
     {path: 'welcome', component: WelcomeComponent},
     {path: '', redirectTo: 'welcome', pathMatch: 'full'},
     {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
