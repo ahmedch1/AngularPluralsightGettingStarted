@@ -4,11 +4,10 @@ import {ProductService} from "./product.service";
 import {Subscription} from "rxjs";
 
 @Component({
-  selector: 'pm-products',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit,OnDestroy {
+export class ProductListComponent implements OnInit, OnDestroy {
 
 
   pageTitle: string = 'Product List';
@@ -17,8 +16,14 @@ export class ProductListComponent implements OnInit,OnDestroy {
   showImage: boolean = false;
   errorMessage: string = '';
   sub!: Subscription;
+  filteredProducts: IProduct[] = [];
+  products: IProduct[] = [];
+
+  constructor(private productService: ProductService) {
+  }
 
   private _listFilter: string = '';
+
   get listFilter(): string {
     return this._listFilter;
   }
@@ -29,15 +34,9 @@ export class ProductListComponent implements OnInit,OnDestroy {
     this.filteredProducts = this.performFilter(value);
   }
 
-  filteredProducts: IProduct[] = [];
-  products: IProduct[] = [];
-
-  constructor(private productService: ProductService) {
-  }
-
   ngOnDestroy() {
-this.sub.unsubscribe();
-    }
+    this.sub.unsubscribe();
+  }
 
   toggleImage(): void {
     this.showImage = !this.showImage;
